@@ -1,0 +1,18 @@
+<div class="panel panel-default col-md-4 col-md-offset-1">
+  <div class="panel-heading">
+    <h3 class="panel-title">Starts At: <%= event.start_time.strftime("%I:%M %p %a %d %b")%></h3>
+  </div>
+  <div class="panel-body">
+    <div class="thumbnail">
+      <div>
+        <h4 class="pull-right"><%= number_to_currency event.ticket_price, unit: "₹" %></h4>
+        <h4><%= link_to event.name, event_path(event) %>
+        </h4>
+        <hr>
+      </div>
+      <div>
+        <p class="text-success">Venue: <%= event.venue %></p>
+      </div>
+    </div>
+  </div>
+</div>

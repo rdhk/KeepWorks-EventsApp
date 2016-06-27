@@ -1,0 +1,7 @@
+<%= render @events %>
+<div class="digg_pagination col-md-3 col-md-offset-5">
+  <%= will_paginate @events %>
+</div>
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "pagination" %>
+<% end %>

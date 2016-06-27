@@ -1,0 +1,19 @@
+<div class="col-md-9 col-md-offset-1" >
+  <div class="thumbnail">
+    <div class="caption-full">
+      <h4 class="pull-right"> <%= number_to_currency @event.ticket_price, unit: "₹" %></h4>
+      <h4><a href="#"><%= @event.name %></a></h4>
+      <p><%= @event.description%> </p>
+    </div>
+    <hr>
+    <div class = "row">
+      <div class="text-left col-md-6">
+        <%= link_to events_path do %>
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to events
+        <% end %>
+      </div>
+      <div class="text-right col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
