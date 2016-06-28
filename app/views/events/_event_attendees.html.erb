@@ -1,9 +1,15 @@
-<% if event.attendees.present? %>  
-  <h3> <%= event.expired? ? "People who attended this event:": "People attending this event are:" %> </h3>
-  <% event.attendees.each do |attendee| %>
-    <p><%= attendee.name %> <span class="label label-<%= attendee.male? ? 'blue' : 'pink' %>"><i class="fa fa-<%= attendee.gender %> fa-2x" aria-hidden="true"></i></span></p>
+<% if event.attendees.present? %>
 
+  <% if current_user && current_user.attends?(event) %>
+  <span>&nbsp;<%= "#{event.expired? ? 'You attended this event' : 'You are attending this event'}#{event.attendees.length > 1 ? ' along with ' + pluralize(event.attendees.length-1, 'person') + '.' : '.'}"  %></span>
+  <% else %>
+  <span><%= pluralize(event.attendees.length, 'person') %> attending this event.</span>
   <% end %>
+
+  <% event.attendees.all_except(current_user).each do |attendee| %>
+    <p><%= "#{attendee.name} (#{attendee.gender})" %> <span class="label label-<%= attendee.male? ? 'blue' : 'pink' %>"><i class="fa fa-<%= attendee.gender %> fa-2x" aria-hidden="true"></i></span></p>
+  <% end %>
+
 <% end %>
 
 <%= content_for :head do %>

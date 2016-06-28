@@ -3,9 +3,8 @@ class Event < ActiveRecord::Base
   validates :name, :venue, :start_time, presence: true
   validates_with EventTimeValidator
 
-  has_many :event_attendees
-  has_many :attendees, through: :event_attendees, class_name: "User"
-  #ensure attend and unattend not happening to past events
+  has_many :tickets
+  has_many :attendees, through: :tickets, class_name: "User"
 
   def expired?
     Time.current > start_time
@@ -21,8 +20,8 @@ class Event < ActiveRecord::Base
 
   def add_attendee(user)
     ticket_price = get_ticket_price(user)
-    ea = EventAttendee.new(event: self, attendee: user, ticket_bought_for: ticket_price)
-    ea.save
+    ticket = Ticket.new(event: self, attendee: user, ticket_bought_for: ticket_price)
+    ticket.save
   end
 
   def remove_attendee(user)

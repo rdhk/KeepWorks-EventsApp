@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
+      <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -23,16 +23,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "Home", root_path %> <span class="sr-only">(current)</span></li>
+            <li class="active"><%= link_to "Events", root_path %> <span class="sr-only">(current)</span></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%= render partial: 'shared/login_options' %>
-          </li>
-        </ul>
+          </ul>
         </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
       <%= render partial: 'shared/flash' %>
-      <%= yield %>
+      <%= yield %>  
+    </div>
     </body>
   </html>

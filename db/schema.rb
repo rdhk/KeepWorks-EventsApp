@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628031655) do
-
-  create_table "event_attendees", force: :cascade do |t|
-    t.integer  "event_id",          limit: 4
-    t.integer  "user_id",           limit: 4
-    t.integer  "ticket_bought_for", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  add_index "event_attendees", ["event_id"], name: "index_event_attendees_on_event_id", using: :btree
-  add_index "event_attendees", ["user_id"], name: "index_event_attendees_on_user_id", using: :btree
+ActiveRecord::Schema.define(version: 20160628185128) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -34,6 +23,17 @@ ActiveRecord::Schema.define(version: 20160628031655) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "event_id",          limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "ticket_bought_for", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "tickets", ["event_id"], name: "index_tickets_on_event_id", using: :btree
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255,             null: false

@@ -37,6 +37,5 @@ class EventsController < ApplicationController
     elsif @event.expired?
       redirect_to event_path(@event), alert: "Sorry, the event has already taken place."
     end
-
   end
 end

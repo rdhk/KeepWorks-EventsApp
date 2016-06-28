@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   validates :email, format: { with: REGEX[:email] }, allow_blank: true
   validates :email, uniqueness: true, case_sensitive: false
 
-  has_many :event_attendees
-  has_many :events, through: :event_attendees
+  has_many :tickets
+  has_many :events, through: :tickets
+
+  scope :all_except, ->(user) { where.not(id: user) }
+
+  def attends? event
+    events.any?{|e| e == event}
+  end
 end
