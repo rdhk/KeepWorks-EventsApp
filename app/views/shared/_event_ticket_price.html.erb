@@ -1,0 +1,7 @@
+<% if signed_in? && current_user.female? %>
+  <s> <%= number_to_currency event.ticket_price, unit: '₹'%> </s>
+  <b><%= number_to_currency event.get_ticket_price(current_user), unit: '₹' %></b>
+  <p class= "text-success">(Additional 5% discount for our female customers)</p>
+<% else %>
+  <%= number_to_currency event.ticket_price, unit: "₹" %>
+<% end %>

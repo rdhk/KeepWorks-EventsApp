@@ -14,5 +14,8 @@
         <p class="text-success">Venue: <%= event.venue %></p>
       </div>
     </div>
+    <% if event.expired? %>
+      <span class="label label-danger">PAST EVENT</span>
+    <% end %>
   </div>
 </div>

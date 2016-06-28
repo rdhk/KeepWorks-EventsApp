@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   get 'users/create'
 
-  resources :events, only: [:index, :show]
+  resources :events, only: [:index, :show] do 
+    member do 
+      post 'attend'
+      post 'unattend'
+    end
+  end
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   # resources :sessions, only: [:create]
